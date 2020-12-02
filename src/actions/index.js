@@ -1,4 +1,3 @@
-import { omdb } from '../omdbAPI';
 import {
   GET_MOVIES,
   GET_MOVIE,
@@ -8,6 +7,7 @@ import {
   MOVIES_ERROR,
   MOVIE_ERROR,
   CLEAR_MOVIE,
+  API_URL,
 } from '../config';
 import { calcRuntime } from '../helpers';
 
@@ -20,12 +20,16 @@ export const getMovies = (query, page = 1) => async (dispatch) => {
     },
   });
   try {
-    const data1 = await omdb.get(`/?${API_KEY}&s=${query}&page=${page}`);
-    const data2 = await omdb.get(`/?${API_KEY}&s=${query}&page=${page + 1}`);
-    // console.log(data1);
-    // console.log(data2);
-    if (data1.data.Response === 'True' && data2.data.Response === 'True') {
-      const movies = [...data1.data.Search, ...data2.data.Search];
+    const data1 = await (
+      await fetch(`${API_URL}/?${API_KEY}&s=${query}&page=${page}`)
+    ).json();
+    const data2 = await (
+      await fetch(`${API_URL}/?${API_KEY}&s=${query}&page=${page + 1}`)
+    ).json();
+    console.log(data1);
+    console.log(data2);
+    if (data1.Response === 'True' && data2.Response === 'True') {
+      const movies = [...data1.Search, ...data2.Search];
       dispatch({
         type: GET_MOVIES,
         payload: {
@@ -37,7 +41,7 @@ export const getMovies = (query, page = 1) => async (dispatch) => {
       dispatch({
         type: MOVIES_ERROR,
         payload: {
-          error: data1.data.Error,
+          error: data1.Error,
           searchTerm: query,
         },
       });
@@ -62,8 +66,8 @@ export const getMovie = (id) => async (dispatch) => {
     },
   });
   try {
-    const { data } = await omdb.get(`/?${API_KEY}&i=${id}`);
-    // console.log(data);
+    const data = await (await fetch(`${API_URL}/?${API_KEY}&i=${id}`)).json();
+    console.log(data);
     if (data.Response === 'True') {
       dispatch({
         type: GET_MOVIE,

@@ -1,5 +1,6 @@
 .movie-details {
   height: 90vh;
+  margin-bottom: 50px;
 }
 
 .movie-details__header {

@@ -9,7 +9,7 @@ export default function PageNotFound(props) {
     <div>
       <MessageBoxButtons
         title="Page Not Found"
-        text={`The page ${props.location.pathname} cannot be found`}
+        text={`The page "${props.location.pathname}" cannot be found`}
         goBack={goBack}
       />
     </div>
