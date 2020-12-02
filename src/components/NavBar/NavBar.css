@@ -1,0 +1,56 @@
+.header {
+  width: 100%;
+  height: auto;
+  background: #1c1c1c;
+  padding: 0 20px;
+}
+
+.header a {
+  color: white;
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: #d3d3d3;
+  text-decoration: none;
+}
+
+.header__content {
+  max-width: 1280px;
+  min-height: 100px;
+  height: auto;
+  padding: 20px 0px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-size: 2rem;
+  font-family: 'Alfa Slab One', cursive;
+}
+
+.omdb {
+  font-size: 1.8rem;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+@media screen and (max-width: 500px) {
+  .header__content {
+    max-width: 1280px;
+    min-height: 0px;
+  }
+
+  .brand {
+    display: inline-block;
+    width: 80px;
+    margin-top: 0px;
+  }
+
+  .omdb {
+    width: 150px;
+    margin-top: 5px;
+  }
+}
