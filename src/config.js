@@ -1,4 +1,4 @@
-export const API_KEY = 'apikey=thewdb';
+export const API_KEY = 'apikey=1c94777f';
 export const API_URL =
   'https://cors-anywhere.herokuapp.com/http://www.omdbapi.com/';
 
